@@ -41,14 +41,7 @@ while stat:
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            stat = False
-        elif event.type == pygame.MOUSEBUTTONDOWN:
-            pos = pygame.mouse.get_pos()
-            col = pos[0]//(20+5)
-            row = pos[1]//(20+5)
-            grid[row][col] = 1
-            print("Click ", pos, "Grid coordinates: ", row, col)
-            
+            stat = False            
     screen.fill((0,0,0))
     for row in range(fs):
         for col in range(fs):
