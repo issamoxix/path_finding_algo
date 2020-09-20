@@ -18,7 +18,7 @@ for i in range(len(grid)):
         score[i][r]=t//1
 e,f = (20,5) #end point coor
 #start point 
-grid[1][1]=1
+grid[1][1]=4
 start=(1,1)
 curr = start
 #end point
@@ -47,11 +47,13 @@ while stat:
         for col in range(fs):
             color=(255,255,255)
             if grid[row][col] ==1:
-                color=(0,255,0)
+                color=(255,0,255)
             elif grid[row][col] ==2:
                 color=(255,0,0)
             elif grid[row][col]==3:
                 color=(0,0,255)
+            elif grid[row][col]==4:
+                color=(0,255,0)
             pygame.draw.rect(screen,color,[(20+5)*col+5,(20+5)*row+5,20,20])
 
     #path finding algo
@@ -96,20 +98,17 @@ while stat:
                     
                 else:
                     f = number+tp
-                if f ==1:
-                    print(path2)
-
                 path[(i,r)]=f
                 grid2[i][r]=f
                 grid[i][r]=1
 
-                print('the coordinate is : ',i,r, 'the score is ',f,'=',score[i][r],'-',gg2)
+                print('the coordinate is : ',i,r, 'the score is ',f)
                 if i ==end[0] and r==end[1]:
                     rx=0.5
                     curr=(i,r)
                     path2.append(curr)
                     break
-                time.sleep(0.05)
+                time.sleep(0.05) #u can remove the sleep , but its better for animation
             if rx==0.5:
                 break
         
@@ -131,8 +130,7 @@ while stat:
                     
         try:
             arr[curr].sort()
-            print('part')
-            print("the smallest number in ",curr, "is =>",arr[curr][0])
+
         except:
             print('rx',rx)
         
@@ -144,7 +142,6 @@ while stat:
                 for r in range(len(grid2[0])):
                     
                     if  arr[curr][0] == grid2[i][r] and curr !=(i,r):
-                        print('###############',i,r,grid2[i][r])
                         if (i,r) in prev:
                             stop_for=1
                             continue
@@ -161,7 +158,6 @@ while stat:
                         break
             
         elif rx==0.5:
-            print(path2)
             for i in range(len(path2)):
                 grid[path2[i][0]][path2[i][1]]=3
                 
@@ -169,10 +165,3 @@ while stat:
         
     clock.tick(60)
     pygame.display.update()
-
-for i in range(len(grid)):
-    print(grid2[i])
-print('###############################')
-for i in range(len(grid)):
-    print(grid[i])
-print(score[13][13])
