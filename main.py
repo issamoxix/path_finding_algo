@@ -16,7 +16,7 @@ for i in range(len(grid)):
         size2= cr*i+15
         t = m.sqrt(size*size + size2*size2)
         score[i][r]=t//1
-e,f = (20,5) #end point coor
+e,f = (20,17) #end point coor
 #start point 
 grid[1][1]=4
 start=(1,1)
@@ -29,8 +29,6 @@ path = {}
 
 path2=[]
 path2.append(start)
-for i in range(len(grid)):
-    print(grid2[i])
 stop = 0
 rx=0
 gg2=score[e][f]#25*e+25*f
@@ -59,7 +57,6 @@ while stat:
     #path finding algo
 
     if stop ==0:
-        print("the current position is ",curr)
         arr[curr]=[]
         if curr !=(1,1):
             prev.append(curr)
@@ -102,7 +99,7 @@ while stat:
                 grid2[i][r]=f
                 grid[i][r]=1
 
-                print('the coordinate is : ',i,r, 'the score is ',f)
+                
                 if i ==end[0] and r==end[1]:
                     rx=0.5
                     curr=(i,r)
@@ -130,9 +127,8 @@ while stat:
                     
         try:
             arr[curr].sort()
-
         except:
-            print('rx',rx)
+            mm="m"
         
         if rx != 0.5:
             for i in range(len(grid2)):
