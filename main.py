@@ -16,7 +16,7 @@ for i in range(len(grid)):
         size2= cr*i+15
         t = m.sqrt(size*size + size2*size2)
         score[i][r]=t//1
-e,f = (20,20) #end point coor
+e,f = (20,5) #end point coor
 #start point 
 grid[1][1]=1
 start=(1,1)
@@ -33,7 +33,7 @@ for i in range(len(grid)):
     print(grid2[i])
 stop = 0
 rx=0
-gg2=25*e+25*f
+gg2=score[e][f]#25*e+25*f
 prev=[]
 arr ={}
 stop_for=1
@@ -103,7 +103,7 @@ while stat:
                 grid2[i][r]=f
                 grid[i][r]=1
 
-                print('the coordinate is : ',i,r, 'the score is ',f)
+                print('the coordinate is : ',i,r, 'the score is ',f,'=',score[i][r],'-',gg2)
                 if i ==end[0] and r==end[1]:
                     rx=0.5
                     curr=(i,r)
@@ -175,3 +175,4 @@ for i in range(len(grid)):
 print('###############################')
 for i in range(len(grid)):
     print(grid[i])
+print(score[13][13])
