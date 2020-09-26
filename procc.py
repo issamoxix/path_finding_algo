@@ -22,13 +22,14 @@ class root:
         
 #  grid and procc stuff
 class procc:
-    def __init__(self):
+    def __init__(self, grid):
         fs = 10
         self.row = None
         self.col  = None
         self.root = (self.row,self.col)
         self.e_row = None
         self.e_col = None
+        self.grid = grid
     def set_val(self, row, col,y,z):
         r = root(row,col)
         if self.e_row == None and self.e_col == None:
@@ -42,7 +43,7 @@ class procc:
             
     creen=555 #screen size pixels
     cr=creen//10
-    grid = [[0 for n in range(25)] for i in range(25)]
+    
     grid2 = [[0 for n in range(25)] for i in range(25)]
     score = [[0 for n in range(25)] for i in range(25)]
     for i in range(len(score)):
@@ -56,17 +57,21 @@ class procc:
         self.root.square_ana()
         current_p_array ={}
         current_p_array[(self.root.row,self.root.col)] = []
-        print((self.root.row,self.root.col))
+        
         for i in range(self.root.from_row,self.root.to_row):
             for r in range(self.root.from_col,self.root.to_col):
                 if self.root.row ==i and self.root.col ==r:
                     continue
                 h = abs(self.root.h(i,r)-self.score[self.e_row][self.e_col])
                 g = self.root.g(i,r)
+                if self.grid[i][r] ==4:
+                    continue
+                self.grid[i][r]=1
                 if self.e_row ==i or self.e_col == r:
                     f= abs(self.e_row-i+self.e_col-r)
                 else:
                     f = h + g 
+                
                 current_p_array[(self.root.row,self.root.col)].append(f)
                 self.grid2[i][r]=f
                 if i==self.e_row and r==self.e_col:
@@ -81,23 +86,11 @@ class procc:
             return 0
 
         path.append(min_c)
-        u = procc()
+        u = procc(self.grid)
         u.set_val(min_c[0],min_c[1],self.e_row,self.e_col)
         u.procced(path)
         return path
                 
 
 
-                
-
-# proc = procc()
-# proc.set_val(2,2,20,16)
-# x = proc.procced([])
-# print(x)
-# print(len(x))
-
-
-
-# [(3, 6), (4, 7), (5, 8), (6, 9), (7, 10), (8, 10), (9, 10), 
-# (10, 10), (11, 10), (12, 10), (13, 10), (14, 10), 
-# (15, 10), (16, 10), (17, 10), (18, 10), (19, 10), (20, 10)]
+            
